@@ -305,7 +305,7 @@ resource "google_secret_manager_secret" "api-secret" {
   secret_id              = "${google_compute_instance.fgt-vm[0].name}-apikey"
 
   replication {
-    automatic            = true
+    auto {}
   }
 }
 resource "google_secret_manager_secret_version" "api_key" {
