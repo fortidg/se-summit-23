@@ -1,9 +1,9 @@
 # Auto-discover custom service account
 # Use service_account_create.sh to create recommended minimal privileges service
 # account. If not found the default Compute Engine account will be used.
-data google_service_account fgt {
-  account_id      = "fortigatesdn-ro"
-}
+# data google_service_account fgt {
+#   account_id      = "fortigatesdn-ro"
+# }
 
 # Auto-detect your own IP address to add it to the API trusthost list in FortiGate configuration
 data "http" "my_ip" {
@@ -21,7 +21,7 @@ module "fortigates" {
 
   prefix          = "${var.prefix}-"
   region          = var.region
-  service_account = data.google_service_account.fgt.email != null ? data.google_service_account.fgt.email : ""
+  # service_account = data.google_service_account.fgt.email != null ? data.google_service_account.fgt.email : ""
   healthcheck_port = 8008
   admin_acl       = ["0.0.0.0/0"]
   api_acl         = ["${data.http.my_ip.body}/32"]
